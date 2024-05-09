@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<views:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:BigBazar.ViewModels"
+             xmlns:models="clr-namespace:BigBazar.Models"
+             xmlns:views="using:BigBazar.Views"
+             x:Class="BigBazar.Views.CatSelectionPage"
+             Title="Binding Title"
+             x:DataType="viewModels:CatSelectionPageViewModel"
+             Shell.PresentationMode="ModalAnimated">
+
+    <Grid RowDefinitions="60,*,60">
+        <!-- header -->
+        <Label Grid.Row="0" Text="Select Categories" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center" 
+               TextColor="{StaticResource PrimaryDark}"/>
+        <!-- indicator -->
+        <ActivityIndicator Grid.Row="1" IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusyVisible}" />
+        
+        <!-- list -->
+
+        <CollectionView Grid.Row="1" ItemsSource="{Binding CategoriesToSelect}" SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:CategoryForSelection">
+                    <Frame BorderColor="Transparent" BackgroundColor="Transparent" IsEnabled="{Binding IsEnabled}"
+                           HorizontalOptions="FillAndExpand" Padding="2" Margin="0" HeightRequest="50">
+                        <Grid HorizontalOptions="FillAndExpand" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <CheckBox Grid.Column="0" IsChecked="{Binding IsSelected}" VerticalOptions="Center"/>
+                            <Label Grid.Column="1" VerticalOptions="Center"
+                                   Text="{Binding Name}" LineBreakMode="TailTruncation" Margin="5,0,0,0"/>
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- footer -->
+        <HorizontalStackLayout Grid.Row="2" Spacing="10" HorizontalOptions="Center">
+        <Button VerticalOptions="Center" Command="{Binding SelectCommand}"  
+                Text="Select" ImageSource="checkgreen24/png" ContentLayout="Right" />
+            <Button VerticalOptions="Center" Command="{Binding CancelCommand}"
+                    Text="Cancel" ImageSource="cancelred24/png" ContentLayout="Right" />
+        </HorizontalStackLayout>
+    </Grid>
+    
+</views:BasePage>

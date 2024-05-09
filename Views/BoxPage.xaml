@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<views:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="using:BigBazar.ViewModels"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:controls="clr-namespace:BigBazar.Controls"
+             xmlns:view="clr-namespace:BigBazar.ViewModels"
+             xmlns:models="using:BigBazar.Models"
+             xmlns:views="using:BigBazar.Views"
+             x:Class="BigBazar.Views.BoxPage"
+             Title="{Binding Title}"
+             x:DataType="viewModels:BoxPageViewModel"
+             Padding="10">
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior Command="{Binding ShellBackButtonCommand}" />
+    </Shell.BackButtonBehavior>
+    
+    <Grid Margin="0,0,0,0" RowDefinitions="90,180,60,*,50">
+
+        <!-- Title Box Number -->
+        <Frame Grid.Row="0" HeightRequest="60" Padding="2" >
+            <Grid ColumnDefinitions="80,*" RowDefinitions="*,20">
+                <Frame Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" HeightRequest="40" WidthRequest="40" CornerRadius="20" Padding="2" HorizontalOptions="Center" VerticalOptions="Center">
+                    <Image  Source="aboutappicon.png" Aspect="AspectFill" HeightRequest="24" WidthRequest="24" HorizontalOptions="Center"/>
+                </Frame>
+                <Label 
+                Grid.Column="1" Grid.Row="0"
+                FontSize="18" FontAttributes="Bold"
+                Text="{Binding CurrentBox.Number, StringFormat='Box n° {0}'}"
+                VerticalOptions="Center" 
+                HorizontalOptions="Start" />
+                <Label Grid.Row="1" Grid.Column="1" 
+                       Text="{Binding CurrentBox.CreatedAt, StringFormat='Created on {0:dddd, dd/MM/yyyy HH:mm}'}" 
+                       FontSize="11"/>
+            </Grid>
+        </Frame>
+
+        <!-- Description editor -->
+        <Frame Grid.Row="1" Padding="0" HeightRequest="180" BackgroundColor="Transparent"
+               BorderColor="Transparent">
+            <Editor Text="{Binding Description}" 
+                    BackgroundColor="{StaticResource  Secondary}"
+                    TextColor="{StaticResource Black}"
+                    FontAttributes="Bold"
+                    />
+        </Frame>
+
+        <!-- Storage Area -->
+        <HorizontalStackLayout Grid.Row="2" Margin="0,5,0,0" BackgroundColor="{StaticResource Gray600}"
+                               Padding="10">
+            <Label Text="Storage Area" VerticalOptions="Center"/>
+            <Picker  
+                    ItemsSource="{Binding StorageAreas}"
+                    SelectedItem="{Binding SelectedArea}"
+                    WidthRequest="250"
+                    BackgroundColor="{StaticResource Gray500}"
+                    TextColor="{StaticResource White}"
+                    FontAttributes="Bold"
+                    Margin="10,0,0,0">
+                <Picker.ItemDisplayBinding>
+                    <Binding Path="Name" />
+                </Picker.ItemDisplayBinding>
+            </Picker>
+            <ImageButton Source="closecircle.png" HorizontalOptions="End" VerticalOptions="Center"
+                         Margin="20,0,0,0" WidthRequest="24" HeightRequest="24"
+                         Command="{Binding EraseAreaCommand}"/>
+        </HorizontalStackLayout>
+
+        <!-- Categories area. Due to MAUI Bug on BindingLayout, the list is built in code-behind instead of a simple Binding -->
+        <Frame Grid.Row="3" Margin="0,10,0,0">
+            <FlexLayout x:Name="flexLayout" Padding="5" 
+                     Wrap="Wrap" JustifyContent="SpaceEvenly" AlignItems="Start" AlignContent="SpaceAround" 
+             Margin="0,20,0,20" />
+        </Frame>
+
+
+        <!-- Buttons area -->
+        <HorizontalStackLayout Grid.Row="4" VerticalOptions="End" Padding="0" Spacing="10" HorizontalOptions="Center">
+            <Button  Command="{Binding DeleteCurrentBoxCommand}"
+                     HeightRequest="40" WidthRequest="60" Text="Del" CornerRadius="20" />
+
+            <Button  Command="{Binding AddPhotoCommand}"
+                     HeightRequest="40" WidthRequest="60" Text="+Pho" CornerRadius="20" />
+
+            <Button  Command="{Binding PickPhotoCommand}"
+                     HeightRequest="40" WidthRequest="60" Text="Pick" CornerRadius="20" />
+
+            <Button  Command="{Binding DisplayBoxPhotosCommand}"
+                     HeightRequest="40" WidthRequest="60" Text="Gal" CornerRadius="20" />
+
+            <Button  Command="{Binding SaveCommand}" BackgroundColor="DeepSkyBlue" TextColor="Black"
+                 HeightRequest="40" WidthRequest="80" Text="Save" CornerRadius="20" 
+                 IsEnabled="{Binding IsModified}" BorderColor="White" BorderWidth="2"/>
+
+        </HorizontalStackLayout>
+
+    </Grid>
+
+</views:BasePage>

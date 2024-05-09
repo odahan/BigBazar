@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:BigBazar.ViewModels"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:views="using:BigBazar.Views"
+             x:Class="BigBazar.Views.MainPage" 
+             x:DataType="viewModels:MainPageViewModel" BackgroundImageSource="rangements.jpg"
+                BackgroundColor="{StaticResource Black}">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="20,0"
+            Spacing="15">
+
+            <!--
+            <toolkit:AvatarView ImageSource="caissesai.png" 
+                                HeightRequest="180" WidthRequest="300" 
+                                CornerRadius="50,50,50,50"
+                                Margin="0,40,0,0" HorizontalOptions="Center">
+                <toolkit:AvatarView.Shadow>
+                    <Shadow Brush="{StaticResource Gray900Brush}"
+                        Offset="15,15"
+                        Opacity="0.7"
+                        Radius="20"/>
+                </toolkit:AvatarView.Shadow>
+            </toolkit:AvatarView>
+            -->
+
+            <Label
+                Text="{Binding Title}" FontSize="70" FontFamily="OpenSansSemibold"
+                HorizontalOptions="Center" TextColor="{StaticResource Gray100}"  
+                HorizontalTextAlignment="Center"
+                Margin="0,100,0,0">
+                <Label.Shadow>
+                    <Shadow Brush="{StaticResource Gray900Brush}"
+                            Offset="13,13"
+                            Radius="15"
+                            Opacity="1"/>
+                </Label.Shadow>
+            </Label>
+            <Label Text="© e-naxos &amp; o.dahan 2024" FontSize="18" 
+                   HorizontalOptions="Center" Margin="0,0,0,20"
+                   TextColor="{StaticResource White}">
+                <Label.Shadow>
+                <Shadow Brush="{StaticResource Gray900Brush}"
+                        Offset="10,10"
+                        Opacity="0.9"
+                        Radius="10"/>
+                </Label.Shadow>
+            </Label>
+
+
+            <Button Margin="0,30,0,0"
+                Text="Add Box" BackgroundColor="{StaticResource Primary}" 
+                    TextColor="{StaticResource Secondary}"
+                    FontAttributes="Bold"
+                ImageSource="circleadd.png" ContentLayout="Right,40"
+                Command="{Binding AddBoxCommand}" 
+                HorizontalOptions="Fill" WidthRequest="150"
+                BorderWidth="2" BorderColor="{StaticResource White}"/>
+
+            <BoxView HeightRequest="1" BackgroundColor="{StaticResource Gray200}" WidthRequest="150" Margin="0,5,0,5"/>
+
+            <Button
+                Text="Box List" 
+                Command="{Binding BoxListCommand}" 
+                HorizontalOptions="Fill" WidthRequest="150" FontAttributes="Bold">
+                <Button.Shadow>
+                    <Shadow Brush="{StaticResource Gray900Brush}"
+                            Offset="15,15"
+                            Opacity="0.9"
+                            Radius="10"/>
+                </Button.Shadow>
+            </Button>
+
+            <Button
+                Text="Gallery" FontAttributes="Bold"
+                Command="{Binding ShowGalleryCommand}" 
+                HorizontalOptions="Fill" WidthRequest="150">
+                <Button.Shadow>
+                    <Shadow Brush="{StaticResource Gray900Brush}"
+                            Offset="15,15"
+                            Opacity="0.9"
+                            Radius="10"/>
+                </Button.Shadow>
+            </Button>
+
+            <Button
+                Text="Tech.Access" FontAttributes="Bold"
+                Command="{Binding ShowHideSettingsCommand}" 
+                HorizontalOptions="Fill" WidthRequest="150">
+                <Button.Shadow>
+                    <Shadow Brush="{StaticResource Gray900Brush}"
+                            Offset="15,15"
+                            Opacity="0.9"
+                            Radius="10"/>
+                </Button.Shadow>
+            </Button>
+            
+            <BoxView IsVisible="{Binding ShowSettings}" HeightRequest="1" BackgroundColor="{StaticResource Gray200}" WidthRequest="150" Margin="0,5,0,5"/>
+
+            
+            <Button
+                IsVisible="{Binding ShowSettings}"
+                Text="Save DB" 
+                Command="{Binding SaveDatabaseCommand}" 
+                HorizontalOptions="Fill" WidthRequest="150" />
+
+            <Button
+                IsVisible="{Binding ShowSettings}"
+                Text="Restore DB" 
+                Command="{Binding RestoreDatabaseCommand}" 
+                HorizontalOptions="Fill" WidthRequest="150" />
+
+            <Button
+                IsVisible="{Binding ShowSettings}"
+                Text="Save Photos" 
+                Command="{Binding SavePhotosCommand}" 
+                HorizontalOptions="Fill" WidthRequest="150" />
+
+            <Button
+                IsVisible="{Binding ShowSettings}"
+                Text="Restore Ph." 
+                Command="{Binding RestorePhotosCommand}" 
+                HorizontalOptions="Fill" WidthRequest="150" />
+
+            <Button
+                IsVisible="{Binding ShowSettings}"
+                Text="Photo Stats" 
+                Command="{Binding ShowPhotosStatsCommand}" 
+                HorizontalOptions="Fill" WidthRequest="150" />
+
+            <Button
+                IsVisible="{Binding ShowSettings}"
+                Text="Export as Text" 
+                Command="{Binding ExportTextDataCommand}" 
+                HorizontalOptions="Fill" WidthRequest="150" />
+
+            <Button
+                IsVisible="{Binding ShowSettings}"
+                Text="New test DB" 
+                Command="{Binding NewTestDbCommand}" 
+                HorizontalOptions="Fill" WidthRequest="150" />
+
+            <Button
+                IsVisible="{Binding ShowSettings}"
+                Text="Reset DB/Photos" 
+                Command="{Binding ResetDbCommand}" 
+                HorizontalOptions="Fill" WidthRequest="150" />
+
+
+
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</views:BasePage>

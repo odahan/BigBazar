@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<views:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="using:BigBazar.Views"
+             xmlns:viewModels="using:BigBazar.ViewModels"
+             x:Class="BigBazar.Views.AboutPage"
+             Title="About App"
+             x:DataType="viewModels:AboutPageViewModel" IconImageSource="shellabout.png">
+
+    <StackLayout Orientation="Vertical" Margin="10">
+
+        <Frame
+                HorizontalOptions="Center"
+                BorderColor="Transparent"
+                IsClippedToBounds="true"
+                CornerRadius="80"
+                HasShadow="False"
+                Margin="0,10,0,50"
+                Padding="20"
+                BackgroundColor="#ff0044aa">
+            <Image
+                    Source="aboutappicon.png"
+                    HeightRequest="100"
+                    WidthRequest="100"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center" />
+        </Frame>
+
+        <Label
+                Text="{Binding Title}"
+                FontSize="Title"
+                FontAttributes="Bold"
+                HorizontalOptions="Center" />
+
+        <Label
+                Text="{Binding Description, StringFormat='{0} '}"
+                Margin="0,10,0,40"
+                HorizontalOptions="Center" FontSize="16"
+                FontAttributes="Italic,Bold" TextColor="{StaticResource Secondary}"/>
+
+        <Frame Margin="0,0,0,40">
+            <Grid Margin="0,10,0,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Label
+                    Text="Company:"
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    VerticalOptions="Center" />
+
+                <Label 
+                    Text="{Binding Company}" FontAttributes="Bold"
+                    Grid.Column="1"
+                    Grid.Row="0"
+                    VerticalOptions="Center" />
+
+                <Label
+                    Text="Product:"
+                    Grid.Column="0"
+                    Grid.Row="1"
+                    Margin="0,10,0,0"
+                    VerticalOptions="Center" />
+
+                <Label
+                    Text="{Binding Product}" FontAttributes="Bold"
+                    Grid.Column="1"
+                    Grid.Row="1"
+                    Margin="0,10,0,0"
+                    VerticalOptions="Center" />
+
+                <Label
+                    Text="Copyright:"
+                    Grid.Column="0"
+                    Grid.Row="2"
+                    Margin="0,10,0,0"
+                    VerticalOptions="Center" />
+
+                <Label
+                    Text="{Binding Copyright}" FontAttributes="Bold"
+                    Grid.Column="1"
+                    Grid.Row="2"
+                    Margin="0,10,0,0"
+                    VerticalOptions="Center" />
+
+                <Label
+                    Text="Version:"
+                    Grid.Column="0"
+                    Grid.Row="3"
+                    Margin="0,10,0,0"
+                    VerticalOptions="Center" />
+
+                <Label
+                    Text="{Binding Version}" FontAttributes="Bold"
+                    Grid.Column="1"
+                    Grid.Row="3"
+                    Margin="0,10,0,0"
+                    VerticalOptions="Center" />
+
+                <Label
+                    Text="Created by:"
+                    Grid.Column="0"
+                    Grid.Row="4"
+                    Margin="0,10,0,0"
+                    VerticalOptions="Center" />
+
+                <Label
+                    Text="Olivier Dahan (MVP)" FontAttributes="Bold"
+                    Grid.Column="1"
+                    Grid.Row="4"
+                    Margin="0,10,0,0"
+                    VerticalOptions="Center" />
+                
+            </Grid>
+        </Frame>
+
+        <Label 
+            HorizontalOptions="Center" Text="Visit E-Naxos Website !" TextColor="Azure" 
+            TextDecorations="Underline" FontSize="20">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding OpenWebsiteCommand}" CommandParameter="https://www.e-naxos.com" />
+            </Label.GestureRecognizers>
+        </Label>
+
+        <Image Source="logoenaxos.png" HorizontalOptions="Center" Margin="0,40,0,0" 
+               WidthRequest="300"/>
+    </StackLayout>
+
+</views:BasePage>

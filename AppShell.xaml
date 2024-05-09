@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="BigBazar.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:BigBazar"
+    xmlns:views="clr-namespace:BigBazar.Views"
+    FlyoutBehavior="Flyout"
+    FlyoutItemIsVisible="True"
+    Title="Big Bazar">
+
+    <MenuFlyoutSeparator />
+    
+    <FlyoutItem Title="Home page" 
+                FlyoutIcon="shellhome24.png" >
+        <Tab>
+            <ShellContent 
+                Title="Home Page"
+                ContentTemplate="{DataTemplate views:MainPage}"
+                Route="MainPage" />
+        </Tab>
+    </FlyoutItem>
+    
+
+    <MenuFlyoutSeparator />
+
+    <FlyoutItem Title="Box List" Icon="shellboxes.png">
+        <Tab>
+            <ShellContent
+                Title="Box List"
+                ContentTemplate="{DataTemplate views:BoxListPage}"
+                Route="BoxList" />
+        </Tab>
+    </FlyoutItem>
+
+    <FlyoutItem Title="Gallery" Icon="shellgallery.png">
+        <Tab>
+            <ShellContent
+                Title="Photo Gallery"
+                ContentTemplate="{DataTemplate views:GalleryPage}"
+                Route="Gallery" />
+        </Tab>
+    </FlyoutItem>
+
+    <MenuFlyoutSeparator />
+
+    <FlyoutItem Title="Add new box" Icon="shellboxadd.png">
+        <Tab>
+            <ShellContent
+                Title="New Box"
+                ContentTemplate="{DataTemplate views:AddBoxPage}"
+                Route="NewBox" />
+        </Tab>
+    </FlyoutItem>
+
+    <FlyoutItem Title="Categories" Icon="shellcategory.png">
+        <Tab>
+            <ShellContent
+                Title="Categories"
+                ContentTemplate="{DataTemplate views:CategoryPage}"
+                Route="Categories" />
+        </Tab>
+    </FlyoutItem>
+
+    <FlyoutItem Title="Storage Areas" Icon="areas.png">
+        <Tab>
+            <ShellContent
+                Title="Storage Areas" Icon="areas.png"
+                ContentTemplate="{DataTemplate views:AreaPage}"
+                Route="Areas" />
+        </Tab>
+    </FlyoutItem>
+
+    <MenuFlyoutSeparator />
+
+    <FlyoutItem Title="Logs" Icon="shelllogs.png">
+        <Tab>
+            <ShellContent
+                Title="Logs"
+                ContentTemplate="{DataTemplate views:LogPage}"
+                Route="Logs" />
+        </Tab>
+    </FlyoutItem>
+
+    <MenuFlyoutSeparator />
+
+    <FlyoutItem Title="About" Icon="shellabout.png">
+        <Tab>
+            <ShellContent
+                Title="About App"
+                ContentTemplate="{DataTemplate views:AboutPage}"
+                Route="About" />
+        </Tab>
+    </FlyoutItem>
+
+
+</Shell>

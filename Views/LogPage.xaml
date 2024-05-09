@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<views:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BigBazar.Views.LogPage"
+             xmlns:viewModels="clr-namespace:BigBazar.ViewModels"
+             xmlns:views="using:BigBazar.Views"
+             x:DataType="viewModels:LogPageViewModel"
+             Title="{Binding Title}">
+    <Grid RowDefinitions="*,70">
+
+        <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" 
+                           Color="OrangeRed"/>
+
+        <ScrollView Grid.Row="0" VerticalScrollBarVisibility="Always">
+            <Editor Text="{Binding Logs}" 
+                   VerticalOptions="Start" HorizontalOptions="Start" 
+                   FontFamily="MonoRegular" FontSize="14"/>
+        </ScrollView>
+        <StackLayout Grid.Row="1" Orientation="Vertical" Spacing="10">
+            <BoxView HeightRequest="1" BackgroundColor="Black" HorizontalOptions="FillAndExpand"/>
+            <StackLayout Orientation="Horizontal" Spacing="20" HorizontalOptions="Center" VerticalOptions="Center">
+                <Button Text="Delete Logs" Command="{Binding DeleteLogsCommand}" HeightRequest="48"/>
+                <Button Text="Reload"  Command="{Binding GetLogCommand}" HeightRequest="48"/>
+                <Button Text="Send" Command="{Binding SendLogByMailCommand}" HeightRequest="48" />
+            </StackLayout>
+        </StackLayout>
+    </Grid>
+</views:BasePage>

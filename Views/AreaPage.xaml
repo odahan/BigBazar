@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<views:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:BigBazar.Views"
+             xmlns:viewModels="clr-namespace:BigBazar.ViewModels"
+             xmlns:models="clr-namespace:BigBazar.Models"
+             x:Class="BigBazar.Views.AreaPage"
+             Title="{Binding Title}"
+             x:DataType="viewModels:AreaPageViewModel">
+
+    <Grid RowDefinitions="*,60" Margin="15,0,15,10">
+        <RefreshView Grid.Row="0"  Command="{Binding RefreshListCommand}" 
+                     IsRefreshing="{Binding IsRefreshing}">
+            <CollectionView ItemsSource="{Binding Areas}" 
+                  SelectedItem="{Binding SelectedArea, Mode=TwoWay}"
+                        SelectionMode="Single">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:AreaDisplayable">
+                        <Label Text="{Binding Name}" VerticalOptions="Center" HorizontalOptions="Start"
+                                   HeightRequest="40" VerticalTextAlignment="Center"
+                               FontAttributes="Bold"/>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+        <HorizontalStackLayout Grid.Row="1" Spacing="20" VerticalOptions="Center">
+            <Button Text="Delete" Command="{Binding DeleteSelectedAreaCommand}" 
+                    WidthRequest="120" />
+            <Button Text="Modify" Command="{Binding ModifySelectedAreaCommand}" 
+                    WidthRequest="120" />
+            <Button Text="Add Area" Command="{Binding AddAreaCommand}" 
+                    WidthRequest="120" />
+        </HorizontalStackLayout>
+    </Grid>
+
+</views:BasePage>

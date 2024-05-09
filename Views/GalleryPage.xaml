@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<views:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:BigBazar.ViewModels"
+             xmlns:models="clr-namespace:BigBazar.Models"
+             xmlns:views="using:BigBazar.Views"
+             xmlns:pinchZoomImage="clr-namespace:Bertuzzi.MAUI.PinchZoomImage;assembly=Bertuzzi.MAUI.PinchZoomImage"
+             x:Class="BigBazar.Views.GalleryPage"
+             Title="{Binding Title}"
+             x:DataType="viewModels:GalleryPageViewModel"
+             x:Name="FullScreen">
+
+    <Grid>
+        <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
+        <CollectionView ItemsSource="{Binding Photos}" ItemsLayout="HorizontalList" >
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Photo" >
+                    <Grid x:Name="GridImage" Padding="10" RowDefinitions="*,Auto" WidthRequest="{Binding Source={x:Reference FullScreen},Path=BindingContext.ScreenWidth}">
+
+                        <Image Grid.Row="0" Aspect="AspectFit" Source="{Binding ImagePath}">
+
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
+                                NumberOfTapsRequired="1"
+                                Command="{Binding Source={x:Reference FullScreen}, Path=BindingContext.ItemTappedCommand}"
+                                CommandParameter="{Binding .}"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+
+                        <Label Grid.Row="1" Text="{Binding DisplayName}" HorizontalOptions="Center" TextColor="White" />
+                        <ImageButton Grid.Row="1" Source="trash24.png" HorizontalOptions="Start"  VerticalOptions="Center" HeightRequest="24" 
+                                 Command="{Binding Source={x:Reference FullScreen}, Path=BindingContext.DeleteImageCommand}"
+                                 CommandParameter="{Binding ImagePath}" Margin="10,0,0,0"/>
+                        <ImageButton Grid.Row="1" Source="box24.png" HorizontalOptions="End"  VerticalOptions="Center" HeightRequest="24"
+                                 Command="{Binding Source={x:Reference FullScreen}, Path=BindingContext.GotoBoxCommand}"
+                                 CommandParameter="{Binding BoxNumber}" Margin="0,0,10,0"/>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</views:BasePage>

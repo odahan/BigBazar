@@ -1,0 +1,1 @@
+﻿[assembly: global::Microsoft.Maui.Controls.Xaml.XamlResourceId("BigBazar.NDepend.NDependOut._2024_02._23_21_45_04.NDependReportFiles.NDependReport.css", "NDepend/NDependOut/2024_02/23_21_45_04/NDependReportFiles/NDependReport.css", null)]

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<views:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:BigBazar.ViewModels"
+             xmlns:controls="using:BigBazar.Controls"
+             xmlns:views="using:BigBazar.Views"
+             xmlns:controls1="using:BigBazar.Controls.ImageZoomControlProject.Controls"
+             x:Class="BigBazar.Views.FullScreenPhotoPage"
+             Title="Full Screen Photo"
+             x:DataType="viewModels:FullScreenPhotoPageViewModel">
+    <Grid RowDefinitions="*,60">
+        <controls1:ImageZoomControl ImageSource="{Binding PhotoPath}" HorizontalOptions="Center" />
+        <Grid Grid.Row="1" Margin="20,0,20,00" VerticalOptions="Center">
+            <Label Text="{Binding PhotoName}"  VerticalOptions="Center" HorizontalOptions="Start"/>
+            <ImageButton Source="share32.png" Command="{Binding SharePhotoCommand}"
+                      VerticalOptions="Center" HorizontalOptions="End"/>
+        </Grid>
+    </Grid>
+</views:BasePage>

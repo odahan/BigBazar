@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<views:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:BigBazar.ViewModels"
+             xmlns:models="clr-namespace:BigBazar.Models"
+             xmlns:views="using:BigBazar.Views"
+             x:Class="BigBazar.Views.CategoryPage"
+             Title="{Binding Title}"
+             x:DataType="viewModels:CategoryPageViewModel">
+    <Grid RowDefinitions="*,60">
+
+        <RefreshView Command="{Binding RefreshListCommand}" IsRefreshing="{Binding IsBusy}">
+            <CollectionView Grid.Row="0" ItemsSource="{Binding Categories}" 
+                        SelectionMode="Single" SelectedItem="{Binding SelectedCategory}" >
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="10" x:DataType="models:Category" BackgroundColor="Transparent">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Path=BindingContext.TappedItemCommand, Source={RelativeSource AncestorType={x:Type ContentPage}}}" 
+                                                  CommandParameter="{Binding .}" NumberOfTapsRequired="1" />
+                            </Grid.GestureRecognizers>
+                            <Label Text="{Binding Name}" VerticalOptions="Center" 
+                               HorizontalOptions="StartAndExpand"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+
+
+        <HorizontalStackLayout Grid.Row="1" VerticalOptions="End" Padding="10" Spacing="20" HorizontalOptions="Center">
+            <Button  Command="{Binding DeleteCategoryCommand}"
+                     HeightRequest="40" WidthRequest="80" Text="Delete" CornerRadius="20"/>
+            <Button  Command="{Binding AddCategoryCommand}"
+                    HeightRequest="40" WidthRequest="80" Text="Add" CornerRadius="20"/>
+        </HorizontalStackLayout>
+
+
+    </Grid>
+
+</views:BasePage>
